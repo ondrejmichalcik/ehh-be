@@ -1,0 +1,63 @@
+micronaut:
+  application:
+    name: ehh-be
+  server:
+    port: ${server.port:8080}
+    netty:
+      worker:
+        threads: 2
+  security:
+    enabled: false
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
+  metrics:
+    enabled: true
+    export:
+      prometheus:
+        enabled: true
+        step: PT1M
+        descriptions: true
+jackson:
+  serialization:
+    writeDatesAsTimestamps: false
+    indentOutput: true
+    failOnEmptyBeans: false
+  serialization-inclusion: ALWAYS
+
+mqtt:
+  client:
+    server-uri: tcp://broker.emqx.io:1883
+    client-id: client10
+
+
+endpoints:
+  beans:
+    enabled: false
+    sensitive: false
+  info:
+    enabled: false
+    sensitive: false
+  health:
+    enabled: true
+    sensitive: false
+  metrics:
+    enabled: false
+    sensitive: false
+  refresh:
+    enabled: false
+    sensitive: false
+  routes:
+    enabled: false
+    sensitive: false
+  loggers:
+    enabled: false
+    sensitive: false
+  prometheus:
+    enabled: true
+    sensitive: false
